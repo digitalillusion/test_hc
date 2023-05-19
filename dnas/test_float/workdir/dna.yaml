@@ -1,0 +1,19 @@
+---
+manifest_version: "1"
+name: test_float
+integrity:
+  network_seed: ~
+  properties: ~
+  origin_time: 1684459701618833
+  zomes:
+    - name: float_rounding_integrity
+      hash: ~
+      bundled: "../../../target/wasm32-unknown-unknown/release/float_rounding_integrity.wasm"
+      dependencies: ~
+coordinator:
+  zomes:
+    - name: float_rounding
+      hash: ~
+      bundled: "../../../target/wasm32-unknown-unknown/release/float_rounding.wasm"
+      dependencies:
+        - name: float_rounding_integrity
