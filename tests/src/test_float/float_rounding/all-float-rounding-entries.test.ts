@@ -44,7 +44,17 @@ test('create a FloatRoundingEntry and get all float rounding entries', async () 
       payload: null
     });
     assert.equal(collectionOutput.length, 1);
-    assert.deepEqual(createdRecord, collectionOutput[0]);    
+    assert.deepEqual(createdRecord, collectionOutput[0]);
+
+    // Alice creates another FloatRoundingEntry and receives an agent activity validation error
+    try {
+      await createFloatRoundingEntry(alice.cells[0]);
+      assert(false, "Should not reach");
+    } catch (error) {
+      assert(error.data.data.includes("A FloatRoundingEntry created by this agent already exists"));
+    }
+
+    await pause(1200);
   });
 });
 

@@ -63,10 +63,9 @@ test('create and read FloatRoundingEntry', async () => {
     });
     assert.deepEqual(sample, decode((createReadOutput.entry as any).Present.entry) as any);
 
-    const sample2 = await sampleFloatRoundingEntry(alice.cells[0], { value: 11.22 });
-
-    // Alice creates another FloatRoundingEntry which has a 2 digits float value
-    const record2: Record = await createFloatRoundingEntry(alice.cells[0], sample2);
+    // Bob creates another FloatRoundingEntry which has a 2 digits float value
+    const sample2 = await sampleFloatRoundingEntry(bob.cells[0], { value: 11.22 });
+    const record2: Record = await createFloatRoundingEntry(bob.cells[0], sample2);
     assert.ok(record2);
 
     // Wait for the created entry to be propagated to the other node.
