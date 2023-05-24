@@ -9,17 +9,24 @@ pub fn validate_create_float_rounding_entry(
     _float_rounding_entry: FloatRoundingEntry,
 ) -> ExternResult<ValidateCallbackResult> {
     if must_get_agent_activity(
-        action.author().clone(),
-        ChainFilter::new(action.prev_action().clone()),
-    )?
-    .iter()
-    .any(|activity| {
-        activity.action.action().action_type() == action.action_type()
-            && activity.action.action().entry_type().map_or(false, |entry_type| entry_type == action.entry_type())
-    }) {
-        Ok(ValidateCallbackResult::Invalid(String::from(
-            "A FloatRoundingEntry created by this agent already exists",
-        )))
+            action.author().clone(),
+            ChainFilter::new(action.prev_action().clone()),
+        )?
+        .iter()
+        .any(|activity| {
+            activity.action.action().action_type() == action.action_type()
+                && activity
+                    .action
+                    .action()
+                    .entry_type()
+                    .map_or(false, |entry_type| entry_type == action.entry_type())
+        })
+    {
+        Ok(
+            ValidateCallbackResult::Invalid(
+                String::from("A FloatRoundingEntry created by this agent already exists"),
+            ),
+        )
     } else {
         Ok(ValidateCallbackResult::Valid)
     }
@@ -30,18 +37,22 @@ pub fn validate_update_float_rounding_entry(
     _original_action: EntryCreationAction,
     _original_float_rounding_entry: FloatRoundingEntry,
 ) -> ExternResult<ValidateCallbackResult> {
-    Ok(ValidateCallbackResult::Invalid(String::from(
-        "Float Rounding Entries cannot be updated",
-    )))
+    Ok(
+        ValidateCallbackResult::Invalid(
+            String::from("Float Rounding Entries cannot be updated"),
+        ),
+    )
 }
 pub fn validate_delete_float_rounding_entry(
     _action: Delete,
     _original_action: EntryCreationAction,
     _original_float_rounding_entry: FloatRoundingEntry,
 ) -> ExternResult<ValidateCallbackResult> {
-    Ok(ValidateCallbackResult::Invalid(String::from(
-        "Float Rounding Entries cannot be deleted",
-    )))
+    Ok(
+        ValidateCallbackResult::Invalid(
+            String::from("Float Rounding Entries cannot be deleted"),
+        ),
+    )
 }
 pub fn validate_create_link_all_float_rounding_entries(
     _action: CreateLink,
@@ -49,17 +60,17 @@ pub fn validate_create_link_all_float_rounding_entries(
     target_address: AnyLinkableHash,
     _tag: LinkTag,
 ) -> ExternResult<ValidateCallbackResult> {
-    // Check the entry type for the given action hash
     let action_hash = ActionHash::from(target_address);
     let record = must_get_valid_record(action_hash)?;
     let _float_rounding_entry: crate::FloatRoundingEntry = record
         .entry()
         .to_app_option()
         .map_err(|e| wasm_error!(e))?
-        .ok_or(wasm_error!(WasmErrorInner::Guest(String::from(
-            "Linked action must reference an entry"
-        ))))?;
-    // TODO: add the appropriate validation rules
+        .ok_or(
+            wasm_error!(
+                WasmErrorInner::Guest(String::from("Linked action must reference an entry"))
+            ),
+        )?;
     Ok(ValidateCallbackResult::Valid)
 }
 pub fn validate_delete_link_all_float_rounding_entries(
@@ -69,7 +80,9 @@ pub fn validate_delete_link_all_float_rounding_entries(
     _target: AnyLinkableHash,
     _tag: LinkTag,
 ) -> ExternResult<ValidateCallbackResult> {
-    Ok(ValidateCallbackResult::Invalid(String::from(
-        "AllFloatRoundingEntries links cannot be deleted",
-    )))
+    Ok(
+        ValidateCallbackResult::Invalid(
+            String::from("AllFloatRoundingEntries links cannot be deleted"),
+        ),
+    )
 }

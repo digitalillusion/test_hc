@@ -4,7 +4,7 @@ import { runScenario, pause, CallableCell } from '@holochain/tryorama';
 import { NewEntryAction, ActionHash, Record, AppBundleSource,  fakeActionHash, fakeAgentPubKey, fakeEntryHash } from '@holochain/client';
 import { decode } from '@msgpack/msgpack';
 
-import { createFloatRoundingEntry } from './common.js';
+import {createDummyEntry, createFloatRoundingEntry} from './common.js';
 
 test('create a FloatRoundingEntry and get all float rounding entries', async () => {
   await runScenario(async scenario => {
@@ -30,6 +30,11 @@ test('create a FloatRoundingEntry and get all float rounding entries', async () 
       payload: null
     });
     assert.equal(collectionOutput.length, 0);
+
+    // Alice creates a DummyEntry that has no must_get_agent_activity validation to workaround
+    // https://github.com/holochain/holochain/issues/2421
+    const createdRecord0: Record = await createDummyEntry(alice.cells[0]);
+    assert.ok(createdRecord0);
 
     // Alice creates a FloatRoundingEntry
     const createdRecord: Record = await createFloatRoundingEntry(alice.cells[0]);

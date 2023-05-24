@@ -20,3 +20,22 @@ export async function createFloatRoundingEntry(cell: CallableCell, floatRounding
     });
 }
 
+
+
+export async function sampleDummyEntry(cell: CallableCell, partialDummyEntry = {}) {
+    return {
+        ...{
+	  test: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        },
+        ...partialDummyEntry
+    };
+}
+
+export async function createDummyEntry(cell: CallableCell, dummyEntry = undefined): Promise<Record> {
+    return cell.callZome({
+      zome_name: "float_rounding",
+      fn_name: "create_dummy_entry",
+      payload: dummyEntry || await sampleDummyEntry(cell),
+    });
+}
+

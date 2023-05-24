@@ -36,11 +36,19 @@ export type FloatRoundingSignal = {
 };
 
 export type EntryTypes =
+ | ({ type: 'DummyEntry'; } & DummyEntry)
  | ({  type: 'FloatRoundingEntry'; } & FloatRoundingEntry);
 
 
 
 export interface FloatRoundingEntry { 
   value: number;
+}
+
+
+
+
+export interface DummyEntry { 
+  test: string;
 }
 
