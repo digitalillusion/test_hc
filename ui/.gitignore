@@ -6,8 +6,7 @@
 .DS_Store
 
 ## npm
-/node_modules/
-/tests/node_modules/
+**/node_modules/
 /npm-debug.log
 
 ## testing

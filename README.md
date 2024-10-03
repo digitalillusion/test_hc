@@ -1,4 +1,4 @@
-# Test HC
+# Test Hc 2
 
 ## Environment Setup
 
@@ -7,16 +7,16 @@
 Enter the nix shell by running this in the root folder of the repository: 
 
 ```bash
-nix-shell
+nix develop
 npm install
 ```
 
-**Run all the other instructions in this README from inside this nix-shell, otherwise they won't work**.
+**Run all the other instructions in this README from inside this nix shell, otherwise they won't work**.
 
 ## Running 2 agents
  
 ```bash
-npm start
+npm run start
 ```
 
 This will create a network of 2 nodes connected to each other and their respective UIs.
@@ -25,7 +25,7 @@ It will also bring up the Holochain Playground for advanced introspection of the
 ## Running the backend tests
 
 ```bash
-npm test
+npm run test
 ```
 
 ## Bootstrapping a network
@@ -46,8 +46,8 @@ To package the web happ:
 npm run package
 ```
 
-You'll have the `test_hc.webhapp` in `workdir`. This is what you should distribute so that the Holochain Launcher can install it.
-You will also have its subcomponent `test_hc.happ` in the same folder`.
+You'll have the `test_hc2.webhapp` in `workdir`. This is what you should distribute so that the Holochain Launcher can install it.
+You will also have its subcomponent `test_hc2.happ` in the same folder`.
 
 ## Documentation
 

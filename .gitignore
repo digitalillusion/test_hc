@@ -13,3 +13,5 @@
 
 /.idea/
 **/*.iml
+test_hc
+.vscode

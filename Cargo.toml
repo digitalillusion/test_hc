@@ -6,21 +6,15 @@ opt-level = "z"
 
 [workspace]
 members = ["dnas/*/zomes/coordinator/*", "dnas/*/zomes/integrity/*"]
+resolver = "2"
 
 [workspace.dependencies]
-hdi = "=0.2.3-beta-rc.0"
-hdk = "=0.1.3-beta-rc.1"
-holochain_integrity_types = "=0.1.3-beta-rc.0"
-serde = "1"
+hdi = "=0.4.2"
+hdk = "=0.3.2"
+serde = "1.0"
 
-[workspace.dependencies.float]
-path = "dnas/test_float/zomes/coordinator/float"
+[workspace.dependencies.test_hc]
+path = "dnas/test_hc/zomes/coordinator/test_hc"
 
-[workspace.dependencies.float_integrity]
-path = "dnas/test_float/zomes/integrity/float"
-
-[workspace.dependencies.float_rounding]
-path = "dnas/test_float/zomes/coordinator/float_rounding"
-
-[workspace.dependencies.float_rounding_integrity]
-path = "dnas/test_float/zomes/integrity/float_rounding"
+[workspace.dependencies.test_hc_integrity]
+path = "dnas/test_hc/zomes/integrity/test_hc"

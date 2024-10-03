@@ -1,16 +1,15 @@
 [package]
-name = "float_rounding"
+name = "test_hc"
 version = "0.0.1"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
-name = "float_rounding"
+name = "test_hc"
 
 [dependencies]
 hdk = { workspace = true }
-holochain_integrity_types = { workspace = true }
-
 serde = { workspace = true }
+serde_json = "1"
 
-float_rounding_integrity = { workspace = true } 
+test_hc_integrity = { workspace = true } 

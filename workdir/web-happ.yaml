@@ -1,7 +1,7 @@
 ---
 manifest_version: "1"
-name: test_hc
+name: test_hc2
 ui:
   bundled: "../ui/dist.zip"
 happ_manifest:
-  bundled: "./test_hc.happ"
+  bundled: "./test_hc2.happ"
